@@ -15,12 +15,14 @@ import { TasksComponent } from './tasks/tasks.component';
 export class AppComponent {
   title = 'first-angular-9June';
   users = DUMMY_USERS;
+  selectedId?: string;
 
   onSelectedUser(id: string) {
     console.log('User selected:', id);
+    this.selectedId = id;
   }
 
   get selectedUser() {
-    return this.users.find((user) => user.id === '1');
+    return this.users.find((user) => user.id === this.selectedId);
   }
 }
