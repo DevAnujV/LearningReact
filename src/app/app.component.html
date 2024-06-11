@@ -10,7 +10,8 @@
         (select)="onSelectedUser($event)"
       />
       <!-- This $event will listen to whatever is emitted by the user component because the event is made
-      inside the app-user selector, in our case it is outputting id so, id will be passed to onSelectedUser function declared in the app component -->
+      inside the app-user selector, in our case it is outputting id so, id will be passed to onSelectedUser 
+      function declared in the app component -->
     </li>
     <li>
       <app-user
@@ -45,4 +46,5 @@
       />
     </li>
   </ul>
+  <app-tasks [name]="selectedUser ? selectedUser.name : ''"></app-tasks>
 </main>

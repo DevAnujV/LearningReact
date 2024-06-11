@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, output } from '@angular/core';
 
 @Component({
   selector: 'app-user',
@@ -11,7 +11,7 @@ export class UserComponent {
   @Input({ required: true }) id!: string;
   @Input({ required: true }) avatar!: string; // @Input marks that this property is settable from outside by parent
   @Input({ required: true }) name!: string; //adding required to the input decorator so that it can show error incase we forgets to set this property in html file.
-  @Output() select = new EventEmitter(); // @Output marks that this property can emit events to any parent component interested
+  @Output() select = new EventEmitter<string>(); // @Output marks that this property can emit events to any parent component interested
 
   get imagePath() {
     return `assets/users/${this.avatar}`;
