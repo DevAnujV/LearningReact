@@ -1,0 +1,11 @@
+<div>
+  <button (click)="onSelectUser()">
+    <img [src]="imagePath" [alt]="name" />
+    <!-- because of the image path-->
+    <span>{{ name }}</span>
+    <!-- This is called handlebar method or string interpolation to access the class and choose a selectedUser inside the
+    UserComponent class. There is also a property Binding syntax... 
+    In case we want to configure an element through its attributes, we have to use Property Binding Syntax donated by - []
+    for e.g. -> incase of img above [] -->
+  </button>
+</div>
