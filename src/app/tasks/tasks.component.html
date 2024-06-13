@@ -1,1 +1,13 @@
-<h1>{{ taskName }}</h1>
+<section id="tasks">
+  <header>
+    <h2>{{ personName }}'s Tasks</h2>
+    <menu>
+      <button>Add Task</button>
+    </menu>
+  </header>
+  <ul>
+    <li *ngFor="let oneTask of filteredTasks">
+      <app-task [task]="oneTask"> </app-task>
+    </li>
+  </ul>
+</section>

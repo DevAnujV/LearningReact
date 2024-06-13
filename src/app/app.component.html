@@ -9,7 +9,8 @@
 
   <app-tasks
     *ngIf="selectedUser; else elseStatement"
-    [name]="selectedUser.name"
+    [personName]="selectedUser.name"
+    [usrId]="selectedUser.id"
   ></app-tasks>
   <ng-template #elseStatement>
     <p id="fallback">Select user to see their tasks</p>
