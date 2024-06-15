@@ -1,6 +1,6 @@
 import { Time } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { Task } from './task.model';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { type Task } from './task.model'; // we can add keyword type there just to specify that it is type that we imported nothing like an extension or library!
 
 @Component({
   selector: 'app-task',
@@ -11,4 +11,9 @@ import { Task } from './task.model';
 })
 export class TaskComponent {
   @Input() task!: Task;
+  @Output() complete = new EventEmitter<string>();
+
+  onCompleteTask() {
+    this.complete.emit(this.task.id);
+  }
 }

@@ -10,7 +10,7 @@ import { User } from './user.model';
 })
 export class UserComponent {
   @Input({ required: true }) user!: User;
-
+  @Input({ required: true }) whichUserSelected!: boolean;
   @Output() select = new EventEmitter<string>(); // @Output marks that this property can emit events to any parent component interested
 
   get imagePath() {

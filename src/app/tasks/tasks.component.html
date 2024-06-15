@@ -1,13 +1,19 @@
+<app-new-task
+  *ngIf="isAddingTask"
+  (cancelWork)="onCancelAddTask()"
+></app-new-task>
+
 <section id="tasks">
   <header>
     <h2>{{ personName }}'s Tasks</h2>
     <menu>
-      <button>Add Task</button>
+      <button (click)="onStartAddTask()">Add Task</button>
     </menu>
   </header>
   <ul>
     <li *ngFor="let oneTask of filteredTasks">
-      <app-task [task]="oneTask"> </app-task>
+      <app-task [task]="oneTask" (complete)="onCompleteTask($event)">
+      </app-task>
     </li>
   </ul>
 </section>

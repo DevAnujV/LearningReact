@@ -1,5 +1,6 @@
 <div>
-  <button (click)="onSelectUser()">
+  <button [class.active]="whichUserSelected" (click)="onSelectUser()">
+    <!-- in the above code, we are conditional rendering css, using [] and saying class.active means highlight the button if the condition is true-->
     <img [src]="imagePath" [alt]="user.name" />
     <!-- because of the image path-->
     <span>{{ user.name }}</span>
