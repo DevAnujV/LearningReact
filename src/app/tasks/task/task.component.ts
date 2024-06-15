@@ -2,11 +2,12 @@ import { Time } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { type Task } from './task.model'; // we can add keyword type there just to specify that it is type that we imported nothing like an extension or library!
 import { CardComponent } from '../../shared/card/card.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [CardComponent],
+  imports: [CardComponent, DatePipe],
   templateUrl: './task.component.html',
   styleUrl: './task.component.css',
 })

@@ -1,7 +1,8 @@
 <app-card>
   <article>
     <h2>{{ task.title }}</h2>
-    <time>{{ task.dueDate }}</time>
+    <time>{{ task.dueDate | date : "fullDate" }}</time>
+    <!-- Using date pipe above, can check what to assign it or not through online reference. -->
     <p>{{ task.summary }}</p>
     <p class="actions">
       <button (click)="onCompleteTask()">Complete</button>
