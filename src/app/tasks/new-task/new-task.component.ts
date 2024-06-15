@@ -1,15 +1,21 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { TasksComponent } from '../tasks.component';
+import { FormsModule } from '@angular/forms';
+import { NewTaskDetials } from '../task/task.model';
 
 @Component({
   selector: 'app-new-task',
   standalone: true,
-  imports: [TasksComponent],
+  imports: [FormsModule],
   templateUrl: './new-task.component.html',
   styleUrl: './new-task.component.css',
 })
 export class NewTaskComponent {
+  enteredTitle = '';
+  enteredDiscription = '';
+  enteredDate = '';
+
   @Output() cancelWork = new EventEmitter<void>();
+  @Output() submitTask = new EventEmitter<NewTaskDetials>();
 
   onCancel() {
     this.cancelWork.emit(); // basically in Hindi -
@@ -23,5 +29,13 @@ export class NewTaskComponent {
     // Input hamesha [] me hota, round bracket ka mtlb hi yeh hai ki tu chal, execute ho, jiske kaaran
     // onCancelAddTask execute hua..... Thats how this all this works.. And humne agar kuch emit bhi krna hua,
     // vo bhi emit hoke onCancelAddTask($event) $event me aajana tha because vo execute hua, control pass hua!!!!!
+  }
+
+  handleSubmit() {
+    this.submitTask.emit({
+      title: this.enteredTitle,
+      date: this.enteredDate,
+      descritpion: this.enteredDiscription,
+    });
   }
 }

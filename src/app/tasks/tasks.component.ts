@@ -3,6 +3,7 @@ import { TaskComponent } from './task/task.component';
 import { NgFor, NgIf } from '@angular/common';
 import { AppComponent } from '../app.component';
 import { NewTaskComponent } from './new-task/new-task.component';
+import { NewTaskDetials } from './task/task.model';
 
 @Component({
   selector: 'app-tasks',
@@ -55,15 +56,16 @@ export class TasksComponent {
     this.tasks = this.tasks.filter((task) => task.id !== id);
   }
 
-  addOneTask(usrId: string) {
+  addOneTask(task: NewTaskDetials) {
     var oneTask = {
-      id: 't5',
-      userId: usrId,
-      title: 'Master Angular 4',
-      summary: 'Learn all basic and Advanced Angular concepts 3C',
-      dueDate: '2021-07-03',
+      id: new Date().getTime().toString(),
+      userId: this.usrId,
+      title: task.title,
+      summary: task.descritpion,
+      dueDate: task.date,
     };
-    this.tasks.push(oneTask);
+    this.tasks.unshift(oneTask); // TO ADD IT TO START OF ARRAY USE unshift instead of push (builtin JS method)
+    this.onCancelAddTask();
   }
 
   onStartAddTask() {
