@@ -1,4 +1,4 @@
-<div>
+<app-card>
   <button [class.active]="whichUserSelected" (click)="onSelectUser()">
     <!-- in the above code, we are conditional rendering css, using [] and saying class.active means highlight the button if the condition is true-->
     <img [src]="imagePath" [alt]="user.name" />
@@ -9,4 +9,4 @@
     In case we want to configure an element through its attributes, we have to use Property Binding Syntax donated by - []
     for e.g. -> incase of img above [] -->
   </button>
-</div>
+</app-card>

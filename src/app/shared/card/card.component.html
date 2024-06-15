@@ -1,0 +1,8 @@
+<div>
+  <!-- This ng-content means that this will be replaced by whatever code will be inside when this card
+    component is wrapped around any template. For eg - in user.component.html, we wrapped the whole HTML around
+<app-card> so that it gets the styling of the app-card .css <div> file. and hte ng content will be replaced
+    by whatever code is inside the user component template. Thus this way it becomes a shared app style component, that
+can be used anywhere around any component.-->
+  <ng-content />
+</div>
