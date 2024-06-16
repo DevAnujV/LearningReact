@@ -1,8 +1,9 @@
 import { Time } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { type Task } from './task.model'; // we can add keyword type there just to specify that it is type that we imported nothing like an extension or library!
 import { CardComponent } from '../../shared/card/card.component';
 import { DatePipe } from '@angular/common';
+import { TasksService } from '../tasks.service';
 
 @Component({
   selector: 'app-task',
@@ -13,9 +14,9 @@ import { DatePipe } from '@angular/common';
 })
 export class TaskComponent {
   @Input() task!: Task;
-  @Output() complete = new EventEmitter<string>();
+  private tasksService = inject(TasksService);
 
-  onCompleteTask() {
-    this.complete.emit(this.task.id);
+  onCompleteTask(taskId: string) {
+    this.tasksService.removeOneTask(taskId);
   }
 }

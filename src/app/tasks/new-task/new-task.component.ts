@@ -18,11 +18,10 @@ export class NewTaskComponent {
   // constructor(public tasksService:TasksService){}
 
   @Input({ required: true }) userId!: string;
-  @Output() cancelWork = new EventEmitter<void>();
-  @Output() submitTask = new EventEmitter<NewTaskDetials>();
+  @Output() close = new EventEmitter<void>();
 
   onCancel() {
-    this.cancelWork.emit(); // basically in Hindi -
+    this.close.emit(); // basically in Hindi -
     // jab yeh wala function chala, when we click on cancel button in new-task template, it will
     // say cancelWork to emit, ya fir yeh kahega ki cancelWork trigger ho,
     //  cancelWork jab trigger hua, to chalayega (cancel)="onCancelAddTask() in the file tasks.component.html
@@ -44,5 +43,6 @@ export class NewTaskComponent {
       },
       this.userId
     );
+    this.onCancel();
   }
 }

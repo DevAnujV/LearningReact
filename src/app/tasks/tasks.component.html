@@ -3,6 +3,8 @@
   *ngIf="isAddingTask"
   (close)="onCloseAddTask()"
 ></app-new-task>
+<!-- As soon as the close is triggered (close.emit is called), onCloseAddTask will be called
+Same as per cody -> When the "close" event is emitted, the onCloseAddTask() function is called in the parent component.-->
 
 <section id="tasks">
   <header>
@@ -12,9 +14,8 @@
     </menu>
   </header>
   <ul>
-    <li *ngFor="let oneTask of tasksService.getAllTasks()">
-      <app-task [task]="oneTask" (complete)="tasksService.getUserTasks($event)">
-      </app-task>
+    <li *ngFor="let oneTask of tasksService.getUserTasks(usrId)">
+      <app-task [task]="oneTask"> </app-task>
     </li>
   </ul>
 </section>
