@@ -1,7 +1,7 @@
 <app-new-task
+  [userId]="usrId"
   *ngIf="isAddingTask"
-  (cancelWork)="onCancelAddTask()"
-  (submitTask)="addOneTask($event)"
+  (close)="onCloseAddTask()"
 ></app-new-task>
 
 <section id="tasks">
@@ -12,8 +12,8 @@
     </menu>
   </header>
   <ul>
-    <li *ngFor="let oneTask of filteredTasks">
-      <app-task [task]="oneTask" (complete)="onCompleteTask($event)">
+    <li *ngFor="let oneTask of tasksService.getAllTasks()">
+      <app-task [task]="oneTask" (complete)="tasksService.getUserTasks($event)">
       </app-task>
     </li>
   </ul>

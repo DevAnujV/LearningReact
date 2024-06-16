@@ -4,6 +4,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { AppComponent } from '../app.component';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { NewTaskDetials } from './task/task.model';
+import { TasksService } from './tasks.service';
 
 @Component({
   selector: 'app-tasks',
@@ -17,62 +18,23 @@ export class TasksComponent {
   @Input() usrId!: string;
   isAddingTask: boolean = false;
 
-  tasks = [
-    {
-      id: 't1',
-      userId: 'u1',
-      title: 'Master Angular',
-      summary: 'Learn all basic and Advanced Angular concepts',
-      dueDate: '2021-06-30',
-    },
-    {
-      id: 't2',
-      userId: 'u2',
-      title: 'Master Angular 2',
-      summary: 'Learn all basic and Advanced Angular concepts 2',
-      dueDate: '2021-07-01',
-    },
-    {
-      id: 't3',
-      userId: 'u3',
-      title: 'Master Angular 3',
-      summary: 'Learn all basic and Advanced Angular concepts 3A',
-      dueDate: '2021-07-02',
-    },
-    {
-      id: 't4',
-      userId: 'u3',
-      title: 'Master Angular 3',
-      summary: 'Learn all basic and Advanced Angular concepts 3B',
-      dueDate: '2021-07-02',
-    },
-  ];
+  // Here, we need the task service like so -
+  // private taskService = new TaskService(); but this way if we use it in other component, we have to
+  // instantiate it there too, due to which if we change the data of tasks service thats manager by
+  // the service in another component, those changes wont be reflected here because we would be operating
+  //on different instances of that tasksService.
+  // Thats why we have to use Dependency Injection (done by constructor) and specifying it dependency that we need
 
-  get filteredTasks() {
-    return this.tasks.filter((task) => task.userId === this.usrId);
+  constructor(public tasksService: TasksService) {
+    // this is how we define and inject dependency. Angular will make the object and refer it everywhere itself. kind of pass by reference
+    // private -> This property is only accessible from inside the class
+    // public -> This property is also accessible from outside the class(e.g. from inside the template)
   }
-
-  onCompleteTask(id: string) {
-    this.tasks = this.tasks.filter((task) => task.id !== id);
-  }
-
-  addOneTask(task: NewTaskDetials) {
-    var oneTask = {
-      id: new Date().getTime().toString(),
-      userId: this.usrId,
-      title: task.title,
-      summary: task.descritpion,
-      dueDate: task.date,
-    };
-    this.tasks.unshift(oneTask); // TO ADD IT TO START OF ARRAY USE unshift instead of push (builtin JS method)
-    this.onCancelAddTask();
-  }
-
   onStartAddTask() {
     this.isAddingTask = true;
   }
 
-  onCancelAddTask() {
+  onCloseAddTask() {
     this.isAddingTask = false;
   }
 }

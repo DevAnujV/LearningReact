@@ -3,6 +3,13 @@
 <main>
   <ul id="users">
     <li *ngFor="let user of users">
+      <!-- In order to understand how this flow works, just remember,,, 
+      This below for loop is creating multiple objects for app-user or UserComponent and each UserComponent
+      is storing the values for each user (all each attributes) and each stores its own html files 
+      e.g.
+      That is how when a user is clicked, in the user.component.html, or user template, onSelectUser() is
+      triggered. Then how does the logic (this.select.emit(this.user.id) knows which id to emit????
+      Again its because each object of user component holds its own values... I assume most logical sense -->
       <app-user
         [user]="user"
         [whichUserSelected]="user.id == selectedId"
